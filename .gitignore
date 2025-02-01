@@ -1,0 +1,12 @@
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# editor files
+vscode
+
+# ignore compiled lua files
+*.luac
+
+# ignore Lazy's lock file since it is environment specific
+lazy-lock.json
