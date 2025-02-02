@@ -21,3 +21,15 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+
+-- telescope
+keymap.set("n", "<leader>ff", function()
+	require("telescope.builtin").find_files()
+end, { desc = "Telescope's find files" })
+keymap.set("n", "<leader>fg", function()
+	require("telescope.builtin").live_grep()
+end, { desc = "Telescope's live grep" })
+
+-- LSP
+keymap.set("n", "gd", vim.lsp.buf.definition, {})
+keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
