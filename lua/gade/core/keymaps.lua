@@ -24,12 +24,13 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- telescope
 keymap.set("n", "<leader>ff", function()
-	require("telescope.builtin").find_files()
+  require("telescope.builtin").find_files()
 end, { desc = "Telescope's find files" })
 keymap.set("n", "<leader>fg", function()
-	require("telescope.builtin").live_grep()
+  require("telescope.builtin").live_grep()
 end, { desc = "Telescope's live grep" })
 
 -- LSP
 keymap.set("n", "gd", vim.lsp.buf.definition, {})
 keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+
