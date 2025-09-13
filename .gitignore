@@ -10,3 +10,6 @@ vscode
 
 # ignore Lazy's lock file since it is environment specific
 lazy-lock.json
+
+# AI assistant context file
+CLAUDE.md

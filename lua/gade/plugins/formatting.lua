@@ -4,6 +4,11 @@ return {
 	config = function()
 		local conform = require("conform")
 
+		-- Configure golines with max line length
+		conform.formatters.golines = {
+			prepend_args = { "-m", "120" },
+		}
+
 		conform.setup({
 			formatters_by_ft = {
 				javascript = { "prettier" },
@@ -18,6 +23,7 @@ return {
 				graphql = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				go = { "gofumpt", "goimports_reviser", "golines" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
