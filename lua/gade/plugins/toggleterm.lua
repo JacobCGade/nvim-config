@@ -86,14 +86,26 @@ return {
       node:toggle()
     end
 
+    local function toggle_term(cmd)
+      return function()
+        vim.cmd("silent! w")
+        vim.cmd(cmd)
+        vim.schedule(function()
+          if vim.bo.buftype == "terminal" then
+            vim.cmd("startinsert")
+          end
+        end)
+      end
+    end
+
     -- Keymaps for different terminal types
-    vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>", { desc = "Toggle terminal" })
-    vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float terminal" })
-    vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm size=15 direction=horizontal<cr>", { desc = "Horizontal terminal" })
-    vim.keymap.set("n", "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", { desc = "Lazygit" })
+    vim.keymap.set("n", "<leader>tt", toggle_term("ToggleTerm"), { desc = "Toggle terminal" })
+    vim.keymap.set("n", "<leader>tf", toggle_term("ToggleTerm direction=float"), { desc = "Float terminal" })
+    vim.keymap.set("n", "<leader>th", toggle_term("ToggleTerm size=15 direction=horizontal"), { desc = "Horizontal terminal" })
+    vim.keymap.set("n", "<leader>tg", toggle_term("lua _LAZYGIT_TOGGLE()"), { desc = "Lazygit" })
 
     -- Multiple terminals
-    vim.keymap.set("n", "<leader>t2", "<cmd>2ToggleTerm<cr>", { desc = "Terminal 2" })
-    vim.keymap.set("n", "<leader>t3", "<cmd>3ToggleTerm<cr>", { desc = "Terminal 3" })
+    vim.keymap.set("n", "<leader>t2", toggle_term("2ToggleTerm"), { desc = "Terminal 2" })
+    vim.keymap.set("n", "<leader>t3", toggle_term("3ToggleTerm"), { desc = "Terminal 3" })
   end,
 }
